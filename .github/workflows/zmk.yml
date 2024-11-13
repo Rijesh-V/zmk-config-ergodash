@@ -1,0 +1,39 @@
+name: ZMK Build
+
+on:
+  push:
+    branches:
+      - main  # This triggers the action on pushing to the main branch
+  pull_request:
+    branches:
+      - main  # This triggers the action on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ZMK Config Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install ZMK dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ ninja-build dfu-util
+
+      - name: Install West and ZMK dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install west
+          pip install -r zmk-config/requirements.txt
+
+      - name: Build firmware
+        run: |
+          west init -l zmk-config
+          west update
+          west build -b nrf52840dk_zmk
+          west flash
