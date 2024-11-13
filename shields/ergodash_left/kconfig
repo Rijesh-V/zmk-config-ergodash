@@ -1,0 +1,47 @@
+# shields/ergodash_left/Kconfig
+
+config KEYBOARD_LEFT
+    bool "Left half of ErgoDash (Primary)"
+    default y
+    help
+      Select this option to configure the left half as the primary controller of the ErgoDash keyboard.
+
+# Enable I2C communication (left side communicates with the right side)
+config I2C
+    bool "Enable I2C communication"
+    default y
+    help
+      Enable I2C communication for the split keyboard. The left half controls the I2C communication to the right half.
+
+# Define the I2C pins for left half
+config I2C_SDA_PIN
+    int "I2C SDA Pin"
+    default 3   # GPIO pin for SDA on the left half
+    help
+      Set the GPIO pin for I2C SDA on the left half of the keyboard.
+
+config I2C_SCL_PIN
+    int "I2C SCL Pin"
+    default 4   # GPIO pin for SCL on the left half
+    help
+      Set the GPIO pin for I2C SCL on the left half of the keyboard.
+
+# Define the matrix row and column pins for the left half
+config MATRIX_LEFT_ROWS
+    int "Matrix Rows for Left Half"
+    default 0   # Pin number for row 0
+    help
+      Set the GPIO pin for the row 0 on the left half of the matrix.
+
+config MATRIX_LEFT_COLS
+    int "Matrix Columns for Left Half"
+    default 1   # Pin number for column 0
+    help
+      Set the GPIO pin for the column 0 on the left half of the matrix.
+
+# Enable Bluetooth communication if the left half has Bluetooth enabled
+config BT_NRF52
+    bool "Enable Bluetooth on Left Half"
+    default y
+    help
+      Enable Bluetooth on the left half of the keyboard (Primary). This board will handle Bluetooth communication.

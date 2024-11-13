@@ -1,0 +1,21 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      path: zmk
+      west-commands: scripts/west_commands.yml
+
+    - name: ergodash_left
+      path: boards/shields/ergodash_left
+      revision: main
+      description: Custom shield for ErgoDash left half
+
+    - name: ergodash_right
+      path: boards/shields/ergodash_right
+      revision: main
+      description: Custom shield for ErgoDash right half
