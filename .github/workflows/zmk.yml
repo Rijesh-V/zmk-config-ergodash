@@ -25,11 +25,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y cmake g++ ninja-build dfu-util
 
-      - name: Install West and ZMK dependencies
+      - name: Install West
         run: |
           python -m pip install --upgrade pip
           python -m pip install west
-          pip install -r zmk-config/requirements.txt
 
       - name: Build firmware
         run: |
